@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertex — The Premium SaaS Platform</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- 1. NAVIGATION -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">VERTEX</a>
+            <ul class="nav-links">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <a href="#pricing" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.85rem;">Dashboard</a>
+                <button class="mobile-menu-btn" aria-label="Toggle Menu">
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                    <span class="burger-line"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. HERO SECTION -->
+    <header class="hero">
+        <div class="container">
+            <div class="hero-tag"><span></span>Vertex Engine v2.0 is now live</div>
+            <h1>Deploy at the speed <br>of your imagination.</h1>
+            <p>Empower your infrastructure with Stripe-grade financial scale and Vercel-like developer workflow elegance. Zero configuration required.</p>
+            <div class="hero-cta">
+                <a href="#pricing" class="btn btn-primary">Start Free Trial</a>
+                <a href="#features" class="btn btn-secondary">Documentation</a>
+            </div>
+
+            <div class="cli-container" id="copyCli">
+                <div class="cli-command">
+                    <span>npx vertex-cli@latest init</span>
+                </div>
+                <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            </div>
+        </div>
+    </header>
+
+    <!-- 3. FEATURES SECTION -->
+    <section id="features" class="features container reveal">
+        <div class="section-header">
+            <h2>Engineered for Performance</h2>
+            <p>Everything you need to scale your application globally.</p>
+        </div>
+        <div class="grid">
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Edge Delivery</h3>
+                <p>Run computing logic instantly around the world without managing origin cold starts or regional servers.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">💳</div>
+                <h3>Unified Billing</h3>
+                <p>Multi-tenant micro-billing interfaces optimized to increase conversions with complete global localization.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔒</div>
+                <h3>Secure Isolated Sandbox</h3>
+                <p>Enterprise grade isolation layers shielding systems from malicious vectors while preserving speed.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. PRICING SECTION -->
+    <section id="pricing" class="pricing reveal">
+        <div class="container">
+            <div class="section-header">
+                <h2>Predictable Pricing</h2>
+                <p>No hidden usage spikes. Scale comfortably.</p>
+            </div>
+
+            <div class="pricing-toggle" id="pricingToggle">
+                <span class="toggle-label active" data-type="monthly">Monthly</span>
+                <div class="switch"></div>
+                <span class="toggle-label" data-type="yearly">Yearly <span style="color: #0070f3; font-size: 0.75rem;">(-20%)</span></span>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <h3>Hobby</h3>
+                    <p class="desc">For individual developers hacking out concepts.</p>
+                    <div class="price-wrapper">
+                        <div class="price">$<span class="amount" data-monthly="0" data-yearly="0">0</span><span class="duration">/mo</span></div>
+                    </div>
+                    <ul class="features-list">
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Global Edge Network</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Automated SSL Certificates</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Community Support</li>
+                    </ul>
+                    <a href="#" class="btn btn-secondary">Get Started</a>
+                </div>
+                <div class="price-card premium">
+                    <div class="badge">Most Popular</div>
+                    <h3>Pro</h3>
+                    <p class="desc">For growing startups moving fast.</p>
+                    <div class="price-wrapper">
+                        <div class="price">$<span class="amount" data-monthly="29" data-yearly="23">29</span><span class="duration">/mo</span></div>
+                    </div>
+                    <ul class="features-list">
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Everything in Hobby</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Advanced Smart Routing</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Dedicated Slack Support</li>
+                        <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Custom Analytics Dashboards</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary" style="background: #ffffff; color: #000; border-color: #ffffff;">Upgrade to Pro</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TESTIMONIALS SECTION -->
+    <section id="testimonials" class="testimonials container reveal">
+        <div class="section-header">
+            <h2>Trusted by Visionaries</h2>
+            <p>See what leading engineering teams are stating about Vertex.</p>
+        </div>
+        <div class="grid">
+            <div class="testimonial-card">
+                <p>"Switching over to Vertex completely transformed how our development workflow behaves. It’s like using Vercel but coupled with deep cloud infrastructure native capabilities."</p>
+                <div class="author">
+                    <div class="avatar"></div>
+                    <div class="author-info">
+                        <h4>Alex Rivera</h4>
+                        <span>CTO, NovaStream</span>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p>"The integration phase took literally 10 minutes. Our checkout throughput handles heavy loads securely without breaking a sweat. Stellar product!"</p>
+                <div class="author">
+                    <div class="avatar"></div>
+                    <div class="author-info">
+                        <h4>Sarah Jenkins</h4>
+                        <span>Lead Architect, FinTech IQ</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. FAQ SECTION -->
+    <section id="faq" class="faq container reveal">
+        <div class="section-header">
+            <h2>Frequently Asked Questions</h2>
+        </div>
+        <div class="faq-max">
+            <div class="faq-item">
+                <div class="faq-trigger">
+                    <span>How does the data migration work?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-content">
+                    <p>We provide zero-downtime database connectors. Simply hook up your existing environment strings, and our orchestrator maps data sets instantly across nodes.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-trigger">
+                    <span>Are there any hidden overage costs?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-content">
+                    <p>Absolutely not. We notify you once you cross 80% of your current tier allowances. We never charge unexpectedly or pause your traffic streams down abruptly.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-trigger">
+                    <span>Can I use my custom SSL management setups?</span>
+                    <span class="faq-icon">+</span>
+                </div>
+                <div class="faq-content">
+                    <p>Yes, enterprise accounts can upload external validation records or integrate custom infrastructure directly with our internal edge network layers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer>
+        <div class="container footer-flex">
+            <div>© 2026 Vertex Inc. All rights reserved.</div>
+            <div style="display: flex; gap: 1.5rem;">
+                <a href="#" style="color: inherit; text-decoration: none;">Privacy Policy</a>
+                <a href="#" style="color: inherit; text-decoration: none;">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="Back to Top">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+    </button>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

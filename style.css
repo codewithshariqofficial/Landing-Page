@@ -1,0 +1,751 @@
+/* -----------------------------------------
+   1. DESIGN TOKENS & RESET (Stripe/Vercel Vibe)
+   ----------------------------------------- */
+:root {
+    --bg-page: #000000;
+    --bg-cards: #0a0a0a;
+    --border-color: rgba(255, 255, 255, 0.08);
+    --text-main: #fafafa;
+    --text-muted: #a1a1aa;
+    --accent-glow: linear-gradient(90deg, #0070f3, #7928ca);
+    --accent-stripe: linear-gradient(135deg, #635bff, #00d4ff);
+    --font-stack: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    --header-height: 72px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-page);
+}
+::-webkit-scrollbar-thumb {
+    background: #27272a;
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #3f3f46;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: var(--font-stack);
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    min-height: 100vh;
+}
+
+/* -----------------------------------------
+   2. REUSABLE COMPONENTS & ANIMATIONS
+   ----------------------------------------- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #ffffff;
+    color: #000000;
+    border: 1px solid #ffffff;
+}
+
+.btn-primary:hover {
+    background: transparent;
+    color: #ffffff;
+    box-shadow: 0 0 25px rgba(255, 255, 255, 0.15);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Scroll Animation Target */
+.reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: var(--transition-smooth);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* -----------------------------------------
+   3. NAVIGATION
+   ----------------------------------------- */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: rgba(0, 0, 0, 0.7);
+    transition: var(--transition-smooth);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--header-height);
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.25rem;
+    letter-spacing: -0.5px;
+    background: linear-gradient(180deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--text-main);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Mobile Menu Button */
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1100;
+}
+
+.burger-line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--text-main);
+    margin: 4px 0;
+    transition: var(--transition-smooth);
+}
+
+/* -----------------------------------------
+   4. HERO SECTION (Stripe Ambient Glow)
+   ----------------------------------------- */
+.hero {
+    position: relative;
+    padding-top: 180px;
+    padding-bottom: 120px;
+    text-align: center;
+    overflow: hidden;
+    background: radial-gradient(circle at 50% -20%, rgba(0, 112, 243, 0.15), transparent 80%),
+                radial-gradient(circle at 0% 0%, rgba(121, 40, 202, 0.08), transparent 40%);
+}
+
+/* Grid Pattern */
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+.hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    border-radius: 100px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    transition: var(--transition-smooth);
+}
+
+.hero-tag:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.hero-tag span {
+    width: 6px;
+    height: 6px;
+    background: #0070f3;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: 0 0 10px #0070f3;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 8vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(180deg, #ffffff 0%, #a1a1aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: var(--text-muted);
+    max-width: 650px;
+    margin: 0 auto 3rem auto;
+    line-height: 1.6;
+}
+
+/* CLI Component */
+.cli-container {
+    max-width: 400px;
+    margin: 3rem auto 0 auto;
+    background: #0a0a0a;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.75rem 1.25rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.cli-container:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: #111;
+}
+
+.cli-command {
+    color: #fafafa;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.cli-command::before {
+    content: "$";
+    color: #555;
+}
+
+.copy-icon {
+    color: #555;
+    transition: color 0.2s ease;
+}
+
+.cli-container:hover .copy-icon {
+    color: #aaa;
+}
+
+.copied .copy-icon {
+    color: #0070f3;
+}
+
+/* -----------------------------------------
+   5. FEATURES SECTION
+   ----------------------------------------- */
+.features {
+    padding: 100px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: var(--bg-cards);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+}
+
+.card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-5px);
+}
+
+/* Border hover beam effect */
+.card::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: radial-gradient(800px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255,255,255,0.06), transparent 40%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--border-color);
+}
+
+.card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* -----------------------------------------
+   6. PRICING SECTION
+   ----------------------------------------- */
+.pricing {
+    padding: 100px 0;
+    background: linear-gradient(180deg, #000000 0%, #050505 100%);
+    border-top: 1px solid var(--border-color);
+}
+
+.pricing-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 4rem;
+}
+
+.toggle-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.toggle-label.active {
+    color: var(--text-main);
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    background: #27272a;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.switch::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    background: #fff;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+}
+
+.pricing-toggle.yearly .switch::after {
+    transform: translateX(20px);
+}
+
+.pricing-toggle.yearly .switch {
+    background: #0070f3;
+}
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.price-card {
+    background: rgba(10, 10, 10, 0.4);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+    padding: 3rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(8px);
+}
+
+.price-card:hover {
+    border-color: rgba(255, 255, 255, 0.2);
+    background: rgba(15, 15, 15, 0.6);
+    transform: translateY(-4px);
+}
+
+.price-card.premium {
+    border-color: rgba(0, 112, 243, 0.4);
+    background: radial-gradient(circle at top right, rgba(0, 112, 243, 0.05), transparent 60%);
+}
+
+.price-card.premium:hover {
+    border-color: #0070f3;
+}
+
+.badge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    background: rgba(0, 112, 243, 0.1);
+    color: #0070f3;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid rgba(0, 112, 243, 0.2);
+}
+
+.price-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+}
+
+.price-card .desc {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 2.5rem;
+    line-height: 1.5;
+}
+
+.price-wrapper {
+    margin-bottom: 2.5rem;
+}
+
+.price {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    display: flex;
+    align-items: baseline;
+    color: var(--text-main);
+}
+
+.price span {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    font-weight: 400;
+    margin-left: 0.25rem;
+}
+
+.features-list {
+    list-style: none;
+    margin-bottom: 2.5rem;
+    flex-grow: 1;
+}
+
+.features-list li {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.features-list li svg {
+    color: #0070f3;
+    flex-shrink: 0;
+}
+
+/* -----------------------------------------
+   7. TESTIMONIALS
+   ----------------------------------------- */
+.testimonials {
+    padding: 100px 0;
+    border-top: 1px solid var(--border-color);
+}
+
+.testimonial-card {
+    background: var(--bg-cards);
+    border: 1px solid var(--border-color);
+    padding: 2.5rem;
+    border-radius: 12px;
+}
+
+.testimonial-card p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    font-style: italic;
+    color: #dddddd;
+    margin-bottom: 1.5rem;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #333, #666);
+}
+
+.author-info h4 {
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.author-info span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* -----------------------------------------
+   8. FAQ SECTION (Accordion)
+   ----------------------------------------- */
+.faq {
+    padding: 100px 0;
+    border-top: 1px solid var(--border-color);
+    padding-bottom: 140px;
+}
+
+.faq-max {
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border-color);
+    padding: 1.5rem 0;
+    cursor: pointer;
+}
+
+.faq-trigger {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.faq-item:hover .faq-trigger {
+    color: #ffffff;
+}
+
+.faq-icon {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: var(--text-muted);
+}
+
+.faq-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+.faq-content p {
+    padding-top: 1rem;
+}
+
+/* Active FAQ state handled via JS classes */
+.faq-item.active .faq-icon {
+    transform: rotate(45deg);
+}
+
+.faq-item.active .faq-content {
+    max-height: 200px; /* arbitrary height to clear text */
+}
+
+/* -----------------------------------------
+   9. FOOTER
+   ----------------------------------------- */
+footer {
+    border-top: 1px solid var(--border-color);
+    padding: 4rem 0;
+    background: #000;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.footer-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Back to Top */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-color);
+    color: var(--text-main);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(8px);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* -----------------------------------------
+   10. RESPONSIVE OPTIMIZATION
+   ----------------------------------------- */
+@media(max-width: 968px) {
+    .nav-links { display: none; }
+    .mobile-menu-btn { display: block; }
+    
+    .navbar.mobile-active .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        width: 100%;
+        background: var(--bg-page);
+        padding: 2rem;
+        border-bottom: 1px solid var(--border-color);
+        gap: 1.5rem;
+        z-index: 1000;
+    }
+
+    .navbar.mobile-active .burger-line:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+    .navbar.mobile-active .burger-line:nth-child(2) { opacity: 0; }
+    .navbar.mobile-active .burger-line:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+}
+
+@media(max-width: 768px) {
+    .hero h1 { font-size: 2.8rem; }
+    .footer-flex { flex-direction: column; gap: 1.5rem; text-align: center; }
+}
